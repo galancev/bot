@@ -1,0 +1,33 @@
+{
+  "name": "galancev/bot",
+  "description": "Console bot component",
+  "minimum-stability": "stable",
+  "license": "GPL-3.0-only",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Evgeniy Galantsev",
+      "email": "galandets@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/galancev/yasdoh"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/galancev/console-log"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "galancev/yasdoh": "dev-master",
+    "galancev/console-log": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Galantcev\\Components\\": ""
+    }
+  }
+}
