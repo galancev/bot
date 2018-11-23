@@ -25,6 +25,18 @@ class Bot
     public $sdoh;
 
     /**
+     * Путь для блокирующего файла
+     * @var string
+     */
+    private $lockFile = '';
+
+    /**
+     * Время жизни блокирующего файла
+     * @var int
+     */
+    private $lockFileTime = 3600;
+
+    /**
      * @inheritdoc
      */
     public function __construct()
@@ -105,5 +117,96 @@ class Bot
     protected function finish()
     {
         $this->sdoh->setStatusDone();
+
+        $this->deleteLockFile();
+    }
+
+    /**
+     * Настройки блокировочного файла
+     * @param string $filePath Путь к блокировочному файлу
+     * @param null|int $lockTime Время жизни блокировочного файла
+     */
+    protected function setupLock($filePath, $lockTime = null)
+    {
+        $this->lockFile = $filePath;
+
+        if ($lockTime)
+            $this->lockFileTime = $lockTime;
+    }
+
+    /**
+     * Возвращает тру, если всё огонь и можно продолжать работу
+     * @return bool
+     */
+    protected function canWeWork()
+    {
+        $this->log->text('Проверяем, имеем ли мы право работать в этом инстансе бота');
+
+        if (!$this->isUnlock()) {
+            return false;
+        }
+
+        if (!$this->setLock()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Ставит блокировку
+     * @return bool
+     */
+    protected function setLock()
+    {
+        $this->log->text('Создаём блокировочный файл...');
+
+        $this->log->dump($this->lockFile);
+
+        if (!file_put_contents($this->lockFile, time())) {
+            $this->log->error('Не удалось записать блокировочный файл!');
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Возвращает тру, если нет файла блокировки
+     * @return bool
+     */
+    protected function isUnlock()
+    {
+        if (file_exists($this->lockFile)) {
+            $this->log->warning('Есть блокировочный файл');
+
+            $time = file_get_contents($this->lockFile);
+
+            if ((time() - $time) > $this->lockFileTime) {
+                $this->log->warning('Блокировочный файл лежит слишком долго и устарел!');
+
+                return true;
+            }
+
+            $this->log->warning('Блокировный файл не устарел, значит просто выходим...');
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Удаление блокировочного файла
+     */
+    protected function deleteLockFile()
+    {
+        if (!$this->lockFile)
+            return;
+
+        $this->log->text('Удаление блокировочного файла');
+
+        unlink($this->lockFile);
     }
 }
