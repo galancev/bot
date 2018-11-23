@@ -117,8 +117,6 @@ class Bot
     protected function finish()
     {
         $this->sdoh->setStatusDone();
-
-        $this->deleteLockFile();
     }
 
     /**
@@ -160,8 +158,6 @@ class Bot
     protected function setLock()
     {
         $this->log->text('Создаём блокировочный файл...');
-
-        $this->log->dump($this->lockFile);
 
         if (!file_put_contents($this->lockFile, time())) {
             $this->log->error('Не удалось записать блокировочный файл!');
