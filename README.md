@@ -33,6 +33,11 @@ namespace bot {
             $this->start(function () {
                 die('А вот тут у нас случилось прерывание, а ничего успешно не завершено!');
             });
+            
+            // Устанавливаем коллбек для добавления записи в лог
+            $this->log(function ($text) {
+                echo $text;
+            });
 
             $this->log->text('Текст');
             $this->log->error('Ошибка!');

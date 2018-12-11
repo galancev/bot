@@ -112,6 +112,15 @@ class Bot
     }
 
     /**
+     * Настраивает коллбек для добавления записи в лог
+     * @param $callback
+     */
+    protected function log($callback)
+    {
+        $this->log->setLogCallback($callback);
+    }
+
+    /**
      * Завершаем работу с роботом
      */
     protected function finish()
