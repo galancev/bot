@@ -4,6 +4,7 @@ namespace Galantcev\Components;
 
 use Galantcev\Components\YaSdoh;
 use Galantcev\Components\ConsoleLog;
+use Closure;
 
 /**
  * Класс для создания функционала роботов
@@ -104,18 +105,18 @@ class Bot
 
     /**
      * Начинаем работу с роботом, передавая ему коллбек в случае некорректного завершения робота
-     * @param \Closure $callback
+     * @param Closure $callback
      */
-    protected function start($callback)
+    protected function start(Closure $callback)
     {
         $this->sdoh->setCallback($callback);
     }
 
     /**
      * Настраивает коллбек для добавления записи в лог
-     * @param $callback
+     * @param Closure $callback
      */
-    protected function log($callback)
+    protected function log(Closure $callback)
     {
         $this->log->setLogCallback($callback);
     }
