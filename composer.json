@@ -22,8 +22,8 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "galancev/yasdoh": "dev-master",
-    "galancev/console-log": "dev-master"
+    "galancev/yasdoh": "*",
+    "galancev/console-log": "*"
   },
   "autoload": {
     "psr-4": {
