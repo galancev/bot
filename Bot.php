@@ -23,7 +23,7 @@ class Bot
      * Хендлер некорректного завершения
      * @var YaSdoh
      */
-    public $sdoh;
+    private $sdoh;
 
     /**
      * Путь для блокирующего файла
