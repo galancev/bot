@@ -5,6 +5,8 @@
 
 namespace {
     // Глобальные инициализации
+
+    include 'vendor/autoload.php';
 }
 
 namespace bot {
@@ -36,6 +38,17 @@ namespace bot {
                 $this->deleteLockFile();
             });
 
+            // Выводим справку в случае переданного параметра --help
+            $this->setScriptOptionCallback('help', function () {
+                $this->log->setUseTimestamps(false);
+                $this->log->setShowLabels(false);
+
+                $this->log->text('Этот скрипт сравнивает горы своей мощной функциональностью');
+
+                $this->finish();
+
+                exit;
+            });
         }
 
         /**
