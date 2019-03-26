@@ -48,7 +48,7 @@ class Bot
     /**
      * Инициализирование робота
      */
-    protected function initialize()
+    private function initialize()
     {
         set_time_limit(0);
 
@@ -63,7 +63,7 @@ class Bot
     /**
      * Убирает буфферизацию вывода
      */
-    protected function setSequentialOutput()
+    private function setSequentialOutput()
     {
         ini_set('output_buffering', 'off');
 
@@ -71,36 +71,41 @@ class Bot
     }
 
     /**
+     * Вызывает коллбек в случае передачи скрипту параметра $option
+     * Можно указать обязательное значение параметра для вызова коллбека
+     * @param string $option Параметр параметра коммандной строки
+     * @param Closure $callback Коллбек
+     * @param null $needleValue Если указать, тогда коллбек вызовется только в случае совпадения его со значением параметра
+     */
+    protected function setScriptOptionCallback($option, Closure $callback, $needleValue = null)
+    {
+        $params = [
+            "{$option}::" => "{$option}::",
+        ];
+
+        $options = getopt(implode('', array_keys($params)), $params);
+
+        if (!isset($options[$option]))
+            return;
+
+        if (isset($needleValue) && $options[$option] != $needleValue)
+            return;
+
+        $callback->__invoke($options[$option]);
+    }
+
+    /**
      * Позволяет некоторые параметры вывода в консоль поменять из командной строки
      */
-    protected function setLogOptions()
+    private function setLogOptions()
     {
-        global $argv;
+        $this->setScriptOptionCallback('output', function ($outputValue) {
+            $this->log->setOutputToConsole((bool)$outputValue);
+        });
 
-        foreach ($argv as $arg) {
-            switch ($arg) {
-                case '--output=0':
-                    $this->log->setOutputToConsole(false);
-
-                    break;
-
-                case '--output=1':
-                    $this->log->setOutputToConsole(true);
-
-                    break;
-
-                case '--only-errors=0':
-                    $this->log->setOutputOnlyIfError(false);
-
-                    break;
-
-                case '--only-errors=1':
-                    $this->log->setOutputOnlyIfError(true);
-
-                    break;
-
-            }
-        }
+        $this->setScriptOptionCallback('only-errors', function ($outputErrorsValue) {
+            $this->log->setOutputOnlyIfError((bool)$outputErrorsValue);
+        });
     }
 
     /**
