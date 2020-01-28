@@ -1,0 +1,98 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "edecde1ec98456a6b086f61a3075ed08",
+    "packages": [
+        {
+            "name": "galancev/console-log",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/galancev/console-log.git",
+                "reference": "5996999aa8a11be99c6585c4eb8546f8eb854998"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/galancev/console-log/zipball/5996999aa8a11be99c6585c4eb8546f8eb854998",
+                "reference": "5996999aa8a11be99c6585c4eb8546f8eb854998",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EG\\Components\\": ""
+                }
+            },
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Evgeniy Galantsev",
+                    "email": "galandets@gmail.com"
+                }
+            ],
+            "description": "Console log component",
+            "support": {
+                "source": "https://github.com/galancev/console-log/tree/v2.0",
+                "issues": "https://github.com/galancev/console-log/issues"
+            },
+            "time": "2020-01-28T20:56:31+00:00"
+        },
+        {
+            "name": "galancev/yasdoh",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/galancev/yasdoh.git",
+                "reference": "4cf6c833ffe45550a2b283fdb314eb947d55a541"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/galancev/yasdoh/zipball/4cf6c833ffe45550a2b283fdb314eb947d55a541",
+                "reference": "4cf6c833ffe45550a2b283fdb314eb947d55a541",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EG\\Components\\": ""
+                }
+            },
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Evgeniy Galantsev",
+                    "email": "galandets@gmail.com"
+                }
+            ],
+            "description": "YaSdoh Component",
+            "support": {
+                "source": "https://github.com/galancev/yasdoh/tree/v2.0",
+                "issues": "https://github.com/galancev/yasdoh/issues"
+            },
+            "time": "2019-12-30T17:58:34+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4.0"
+    },
+    "platform-dev": []
+}
