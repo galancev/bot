@@ -11,7 +11,7 @@ namespace {
 
 namespace bot {
 
-    use Galantcev\Components\Bot;
+    use EG\Components\Bot;
 
     /**
      * Пример робота

@@ -1,15 +1,15 @@
 <?php
 
-namespace Galantcev\Components;
+namespace EG\Components;
 
-use Galantcev\Components\YaSdoh;
-use Galantcev\Components\ConsoleLog;
+use EG\Components\YaSdoh;
+use EG\Components\ConsoleLog;
 use Closure;
 
 /**
  * Класс для создания функционала роботов
  * Class Bot
- * @package Components
+ * @package EG\Components
  */
 class Bot
 {
