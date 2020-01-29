@@ -22,8 +22,8 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "galancev/yasdoh": "^2.0.0",
-    "galancev/console-log": "^2.0.0"
+    "galancev/yasdoh": "^2.0",
+    "galancev/console-log": "^2.0"
   },
   "autoload": {
     "psr-4": {
